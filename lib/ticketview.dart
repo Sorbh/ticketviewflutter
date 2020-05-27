@@ -314,148 +314,394 @@ class TicketClipper extends CustomPainter {
     paint.style = PaintingStyle.fill;
 
     Rect foregroundRect = Rect.fromLTRB(
-        0 + foregroundPadding.left,
-        0 + foregroundPadding.top,
+        foregroundPadding.left,
+        foregroundPadding.top,
         size.width - foregroundPadding.right,
         size.height - foregroundPadding.bottom);
 
     //Clip the triangle or Arc
     Path path = Path();
 
-    path.moveTo(foregroundRect.left, foregroundRect.top);
+    // path.moveTo(foregroundRect.left, foregroundRect.top);
 
-    _addTrianglePointToPath(
-        foregroundRect,
-        path,
-        Offset(foregroundRect.left, foregroundRect.top),
-        Offset(foregroundRect.right, foregroundRect.top),
-        trianglePos,
-        triangleSize);
+    // path.lineTo(foregroundRect.right, foregroundRect.top);
 
-    _addArcPointToPath(
-        foregroundRect,
-        path,
-        Offset(foregroundRect.right, foregroundRect.top),
-        Offset(foregroundRect.right, foregroundRect.bottom),
-        4);
+    // _addTrianglePointToPath(
+    //     foregroundRect,
+    //     path,
+    //     Offset(foregroundRect.left, foregroundRect.top),
+    //     Offset(foregroundRect.right, foregroundRect.top),
+    //     trianglePos,
+    //     triangleSize);
 
-    _addTrianglePointToPath(
-        foregroundRect,
-        path,
-        Offset(foregroundRect.right, foregroundRect.bottom),
-        Offset(foregroundRect.left, foregroundRect.bottom),
-        trianglePos,
-        triangleSize);
+    // _addTrianglePointToPath(
+    //     foregroundRect,
+    //     path,
+    //     Offset(foregroundRect.right, foregroundRect.top),
+    //     Offset(foregroundRect.right, foregroundRect.bottom),
+    //     trianglePos,
+    //     triangleSize);
 
-    _addArcPointToPath(
-        foregroundRect,
-        path,
-        Offset(foregroundRect.left, foregroundRect.bottom),
-        Offset(foregroundRect.left, foregroundRect.top),
-        4);
+    // path.lineTo(foregroundRect.left, foregroundRect.bottom);
 
-    canvas.clipPath(path);
+    // _addArcPointToPath(
+    //     foregroundRect,
+    //     path,
+    //     Offset(foregroundRect.right, foregroundRect.top),
+    //     Offset(foregroundRect.right, foregroundRect.bottom),
+    //     4);
+
+    // _addTrianglePointToPath(
+    //     foregroundRect,
+    //     path,
+    //     Offset(foregroundRect.right, foregroundRect.bottom),
+    //     Offset(foregroundRect.left, foregroundRect.bottom),
+    //     trianglePos,
+    //     triangleSize);
+
+    // _addTrianglePointToPath(
+    //     foregroundRect,
+    //     path,
+    //     Offset(foregroundRect.left, foregroundRect.bottom),
+    //     Offset(foregroundRect.left, foregroundRect.top),
+    //     trianglePos,
+    //     triangleSize);
+
+    // path.lineTo(foregroundRect.left, foregroundRect.top);
+
+    // _addArcPointToPath(
+    //     foregroundRect,
+    //     path,
+    //     Offset(foregroundRect.left, foregroundRect.bottom),
+    //     Offset(foregroundRect.left, foregroundRect.top),
+    //     4);
+
+    // canvas.clipPath(path);
 
     path.reset();
 
     path.moveTo(foregroundRect.left, foregroundRect.top);
-    path.lineTo(foregroundRect.right, foregroundRect.top);
-    path.lineTo(foregroundRect.right, foregroundRect.bottom);
-    path.lineTo(foregroundRect.left, foregroundRect.bottom);
+
+    // path.lineTo(foregroundRect.right, foregroundRect.top);
+    _addTrianglePointToPath(
+        foregroundRect,
+        path,
+        Offset(foregroundRect.left, foregroundRect.top),
+        Offset(foregroundRect.right, foregroundRect.top),
+        trianglePos,
+        triangleSize);
+    // _addArcPointToPath(
+    //     foregroundRect,
+    //     path,
+    //     Offset(foregroundRect.left, foregroundRect.top),
+    //     Offset(foregroundRect.right, foregroundRect.top),
+    //     4);
+
+    // path.lineTo(foregroundRect.right, foregroundRect.bottom);
+    // _addTrianglePointToPath(
+    //     foregroundRect,
+    //     path,
+    //     Offset(foregroundRect.right, foregroundRect.top),
+    //     Offset(foregroundRect.right, foregroundRect.bottom),
+    //     trianglePos,
+    //     triangleSize);
+
+    _addArcPointToPath(
+        foregroundRect,
+        path,
+        Offset(foregroundRect.right, foregroundRect.top),
+        Offset(foregroundRect.right, foregroundRect.bottom),
+        4);
+
+    // path.lineTo(foregroundRect.left, foregroundRect.bottom);
+    // _addTrianglePointToPath(
+    //     foregroundRect,
+    //     path,
+    //     Offset(foregroundRect.right, foregroundRect.bottom),
+    //     Offset(foregroundRect.left, foregroundRect.bottom),
+    //     trianglePos,
+    //     triangleSize);
+    _addArcPointToPath(
+        foregroundRect,
+        path,
+        Offset(foregroundRect.right, foregroundRect.bottom),
+        Offset(foregroundRect.left, foregroundRect.bottom),
+        4);
+
+    path.lineTo(foregroundRect.left, foregroundRect.top);
+    _addTrianglePointToPath(
+        foregroundRect,
+        path,
+        Offset(foregroundRect.left, foregroundRect.bottom),
+        Offset(foregroundRect.left, foregroundRect.top),
+        trianglePos,
+        triangleSize,
+        isArc: true);
+
+    // _addArcPointToPath(
+    //   foregroundRect,
+    //   path,
+    //   Offset(foregroundRect.left, foregroundRect.bottom),
+    //   Offset(foregroundRect.left, foregroundRect.top),
+    //   4);
 
     paint.color = Colors.indigo;
-    // canvas.drawPath(path, paint);
-    canvas.drawRect(foregroundRect, paint);
+    // paint.style = PaintingStyle.stroke;
+    paint.strokeWidth = 2;
+
+    canvas.drawShadow(path, Colors.black, 2, false);
+    // paint.color = Colors.indigo;
+    canvas.drawPath(path, paint);
+
+    drawDashedLine(canvas, dashStart, dashEnd);
+
+    // canvas.drawRect(foregroundRect, paint);
   }
 
   void _addTrianglePointToPath(Rect size, Path path, Offset start, Offset end,
-      double trianglePos, Size triangleSize) {
+      double trianglePos, Size triangleSize,
+      {bool isArc = false}) {
     if (start.dy == end.dy) {
       //Draw Horizontal Triangle
 
       if (end.dx > start.dx) {
         path.addPolygon([
           start,
-          Offset((size.width * trianglePos) - triangleSize.width / 2, size.top),
-          Offset((size.width * trianglePos), size.top + triangleSize.height),
-          Offset((size.width * trianglePos) + triangleSize.width / 2, size.top),
+          Offset(start.dx + (size.width * trianglePos) - triangleSize.width / 2,
+              start.dy),
+          Offset(start.dx + (size.width * trianglePos),
+              start.dy + triangleSize.height),
+          Offset(start.dx + (size.width * trianglePos) + triangleSize.width / 2,
+              start.dy),
           end,
         ], false);
+
+        _setDashPoints(Offset(start.dx + (size.width * trianglePos),
+            start.dy + triangleSize.height));
       } else {
+        if (isArc) {
+          path.lineTo(
+              start.dx - (size.width * trianglePos) + triangleSize.width / 2,
+              start.dy);
+          path.arcToPoint(
+              Offset(
+                  start.dx -
+                      (size.width * trianglePos) -
+                      triangleSize.width / 2,
+                  start.dy),
+              radius: Radius.circular(triangleSize.width / 2),
+              clockwise: false);
+          path.lineTo(end.dx, end.dy);
+          _setDashPoints(Offset(start.dx - (size.width * trianglePos),
+              start.dy - triangleSize.width / 2));
+          return;
+        }
+        path.addPolygon([
+          start,
+          Offset(start.dx - (size.width * trianglePos) + triangleSize.width / 2,
+              start.dy),
+          Offset(start.dx - (size.width * trianglePos),
+              start.dy - triangleSize.height),
+          Offset(start.dx - (size.width * trianglePos) - triangleSize.width / 2,
+              start.dy),
+          end,
+        ], false);
+        _setDashPoints(Offset(start.dx - (size.width * trianglePos),
+            start.dy - triangleSize.height));
+      }
+    } else if (start.dx == end.dx) {
+      //Draw Vertical Triangle
+      if (end.dy > start.dy) {
+        //don't know why this work.
+        path.lineTo(end.dx, end.dy);
         path.addPolygon([
           start,
           Offset(
-              (size.width * trianglePos) + triangleSize.width / 2, size.bottom),
-          Offset((size.width * trianglePos), size.bottom - triangleSize.height),
+              start.dx,
+              start.dy +
+                  (size.height * trianglePos) -
+                  (triangleSize.width / 2)),
+          Offset(start.dx - triangleSize.height,
+              start.dy + (size.height * trianglePos)),
           Offset(
-              (size.width * trianglePos) - triangleSize.width / 2, size.bottom),
+              start.dx,
+              start.dy +
+                  (size.height * trianglePos) +
+                  (triangleSize.width / 2)),
           end,
         ], false);
+        _setDashPoints(Offset(start.dx - triangleSize.height,
+            start.dy + (size.height * trianglePos)));
+      } else {
+        if (isArc) {
+          path.lineTo(start.dx,
+              start.dy - (size.height * trianglePos) + triangleSize.width / 2);
+          path.arcToPoint(
+              Offset(
+                start.dx,
+                start.dy - (size.height * trianglePos) - triangleSize.width / 2,
+              ),
+              radius: Radius.circular(triangleSize.width / 2),
+              clockwise: false);
+          path.lineTo(end.dx, end.dy);
+          _setDashPoints(Offset(
+            start.dx + triangleSize.width / 2,
+            start.dy - (size.height * trianglePos),
+          ));
+          return;
+        }
+
+        path.lineTo(end.dx, end.dy);
+        path.addPolygon([
+          start,
+          Offset(start.dx,
+              start.dy - (size.height * trianglePos) + triangleSize.width / 2),
+          Offset(
+            start.dx + triangleSize.height,
+            start.dy - (size.height * trianglePos),
+          ),
+          Offset(start.dx,
+              start.dy - (size.height * trianglePos) - triangleSize.width / 2),
+          end,
+        ], false);
+        _setDashPoints(Offset(
+          start.dx + triangleSize.height,
+          start.dy - (size.height * trianglePos),
+        ));
       }
     }
   }
+
+  void _setDashPoints(Offset offset) {
+    if (dashStart == null) {
+      dashStart = offset;
+      return;
+    }
+    dashEnd = offset;
+  }
+
+  // void _drawPath(Canvas canvas, Rect size, Path path, Offset start, Offset end,
+  //     double trianglePos, Size triangleSize) {
+  //   Path newPath = Path();
+
+  //   newPath.moveTo(start.dx, start.dy);
+  //   newPath.lineTo(start.dx,
+  //       start.dy + (size.height * trianglePos) - triangleSize.width / 2);
+  //   newPath.lineTo(
+  //       start.dx - triangleSize.height, start.dy + (size.height * trianglePos));
+  //   newPath.lineTo(start.dx,
+  //       start.dy + (size.height * trianglePos) + triangleSize.width / 2);
+  //   newPath.lineTo(end.dx, end.dy);
+
+  //   canvas.drawPath(
+  //       newPath,
+  //       Paint()
+  //         ..color = Colors.red
+  //         ..style = PaintingStyle.stroke
+  //         ..strokeWidth = 3);
+  // }
 
   void _addArcPointToPath(
       Rect size, Path path, Offset start, Offset end, double radius) {
     if (start.dx == end.dx) {
       //Draw vertical lines
 
-      double height = (end.dy - start.dy).abs();
-      double offsetBothSide = (height % (radius * 2.5)) / 2;
-      int numOfArc = (height / (radius * 2.5)).truncate();
+      double height = size.height.abs();
+      double offsetBothSide = (height % (radius * 3)) / 2;
+      int numOfArc = (height / (radius * 3)).truncate();
 
       if (end.dy > start.dy) {
         path.relativeLineTo(0, offsetBothSide);
         for (int i = 0; numOfArc > i; i++) {
-          path.relativeLineTo(0, radius * .25);
-          // path.relativeLineTo(0, radius * 2);
+          path.relativeLineTo(0, radius * .5);
           path.relativeArcToPoint(Offset(0, radius * 2),
               radius: Radius.circular(radius), clockwise: false);
-          path.relativeLineTo(0, radius * .25);
+          path.relativeLineTo(0, radius * .5);
         }
         path.relativeLineTo(0, offsetBothSide);
       } else {
         path.relativeLineTo(0, -offsetBothSide);
         for (int i = 0; numOfArc > i; i++) {
-          path.relativeLineTo(0, -(radius * .25));
+          path.relativeLineTo(0, -(radius * .5));
           path.relativeArcToPoint(Offset(0, -(radius * 2)),
               radius: Radius.circular(radius), clockwise: false);
-          path.relativeLineTo(0, -(radius * .25));
+          path.relativeLineTo(0, -(radius * .5));
         }
         path.relativeLineTo(0, -offsetBothSide);
+      }
+    } else if (start.dy == end.dy) {
+      double width = size.width.abs();
+      double offsetBothSide = (width % (radius * 3)) / 2;
+      int numOfArc = (width / (radius * 3)).truncate();
+
+      if (end.dx > start.dx) {
+        path.relativeLineTo(offsetBothSide, 0);
+        for (int i = 0; numOfArc > i; i++) {
+          path.relativeLineTo(radius * .5, 0);
+          path.relativeArcToPoint(Offset(radius * 2, 0),
+              radius: Radius.circular(radius), clockwise: false);
+          path.relativeLineTo(radius * .5, 0);
+        }
+        path.relativeLineTo(offsetBothSide, 0);
+      } else {
+        path.relativeLineTo(-offsetBothSide, 0);
+        for (int i = 0; numOfArc > i; i++) {
+          path.relativeLineTo(-(radius * .5), 0);
+          path.relativeArcToPoint(Offset(-(radius * 2), 0),
+              radius: Radius.circular(radius), clockwise: false);
+          path.relativeLineTo(-(radius * .5), 0);
+        }
+        path.relativeLineTo(-offsetBothSide, 0);
       }
     }
   }
 
-  // void drawDashedLine(Canvas canvas, Offset start, Offset end) {
-  //   if (start.dx == end.dx) {
-  //     Offset tempStar, tempEnd;
-  //     if (start.dy > end.dy) {
-  //       tempStar = end;
-  //       tempEnd = start;
-  //     } else {
-  //       tempStar = start;
-  //       tempEnd = end;
-  //     }
-  //     Paint dashLinePaint = Paint();
-  //     dashLinePaint.color = Colors.black87;
-  //     dashLinePaint.strokeWidth = .3;
+  void drawDashedLine(Canvas canvas, Offset start, Offset end) {
+    Path path = Path();
+    path.moveTo(start.dx, start.dy);
 
-  //     var dashWidth = 4;
-  //     var dashSpace = 4;
-  //     double startY = tempStar.dy;
-  //     var maxY = tempEnd.dy;
+    Paint dashLinePaint = Paint();
+    dashLinePaint.color = Colors.white;
+    dashLinePaint.style = PaintingStyle.stroke;
+    dashLinePaint.strokeWidth = 2;
+    dashLinePaint.strokeCap = StrokeCap.round;
 
-  //     while (maxY >= 0) {
-  //       canvas.drawLine(Offset(tempStar.dx, startY),
-  //           Offset(tempEnd.dx, startY + dashWidth), dashLinePaint);
-  //       final space = (dashSpace + dashWidth);
-  //       startY += space;
-  //       maxY -= space;
-  //       // print('${maxY}');
-  //     }
-  //   }
-  // }
+    path.lineTo(end.dx, end.dy);
+
+    canvas.drawPath(path, dashLinePaint);
+
+    
+
+
+
+    // if (start.dx == end.dx) {
+    //   Offset tempStar, tempEnd;
+    //   if (start.dy > end.dy) {
+    //     tempStar = end;
+    //     tempEnd = start;
+    //   } else {
+    //     tempStar = start;
+    //     tempEnd = end;
+    //   }
+    //   Paint dashLinePaint = Paint();
+    //   dashLinePaint.color = Colors.white;
+    //   dashLinePaint.strokeWidth = .3;
+
+    //   var dashWidth = 4;
+    //   var dashSpace = 4;
+    //   double startY = tempStar.dy;
+    //   var maxY = tempEnd.dy;
+
+    //   while (maxY >= 0) {
+    //     canvas.drawLine(Offset(tempStar.dx, startY),
+    //         Offset(tempEnd.dx, startY + dashWidth), dashLinePaint);
+    //     final space = (dashSpace + dashWidth);
+    //     startY += space;
+    //     maxY -= space;
+    //     // print('${maxY}');
+    //   }
+    // }
+  }
 
   @override
   bool shouldRepaint(CustomPainter oldDelegate) {
