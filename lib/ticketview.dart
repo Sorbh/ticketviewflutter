@@ -669,38 +669,6 @@ class TicketClipper extends CustomPainter {
     path.lineTo(end.dx, end.dy);
 
     canvas.drawPath(path, dashLinePaint);
-
-    
-
-
-
-    // if (start.dx == end.dx) {
-    //   Offset tempStar, tempEnd;
-    //   if (start.dy > end.dy) {
-    //     tempStar = end;
-    //     tempEnd = start;
-    //   } else {
-    //     tempStar = start;
-    //     tempEnd = end;
-    //   }
-    //   Paint dashLinePaint = Paint();
-    //   dashLinePaint.color = Colors.white;
-    //   dashLinePaint.strokeWidth = .3;
-
-    //   var dashWidth = 4;
-    //   var dashSpace = 4;
-    //   double startY = tempStar.dy;
-    //   var maxY = tempEnd.dy;
-
-    //   while (maxY >= 0) {
-    //     canvas.drawLine(Offset(tempStar.dx, startY),
-    //         Offset(tempEnd.dx, startY + dashWidth), dashLinePaint);
-    //     final space = (dashSpace + dashWidth);
-    //     startY += space;
-    //     maxY -= space;
-    //     // print('${maxY}');
-    //   }
-    // }
   }
 
   @override
