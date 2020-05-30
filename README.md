@@ -3,7 +3,7 @@
 TicketViewFlutter is a simple and customizable Ticket/Receipt View for Flutter.
 The source code is **100% Dart**.
 
-[![pub package](https://img.shields.io/pub/v/ticketview.svg?style=flat-square)](https://pub.dartlang.org/packages/kdgaugeview) ![License](https://img.shields.io/badge/License-BSD%203--Clause-blue.svg?style=flat-square)
+[![pub package](https://img.shields.io/pub/v/ticketview.svg?style=flat-square)](https://pub.dartlang.org/packages/ticketviewflutter) ![License](https://img.shields.io/badge/License-BSD%203--Clause-blue.svg?style=flat-square)
 
 
 # Motivation
@@ -68,7 +68,9 @@ TicketView(
 # Screenshots
 | Default View | Receipt View |
 |----------|------|
+| | |
 | ![alt text](https://github.com/sorbh/ticketviewflutter/blob/master/raw/1.jpg) | ![alt text](https://github.com/sorbh/ticketviewflutter/blob/master/raw/2.jpg) |
+| | |
 
 
  
