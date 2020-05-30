@@ -411,27 +411,6 @@ class TicketViewPainter extends CustomPainter {
     dashEnd = offset;
   }
 
-  void _drawPath(Canvas canvas, Rect size, Path path, Offset start, Offset end,
-      double trianglePos, Size triangleSize) {
-    Path newPath = Path();
-
-    newPath.moveTo(start.dx, start.dy);
-    newPath.lineTo(start.dx,
-        start.dy + (size.height * trianglePos) - triangleSize.width / 2);
-    newPath.lineTo(
-        start.dx - triangleSize.height, start.dy + (size.height * trianglePos));
-    newPath.lineTo(start.dx,
-        start.dy + (size.height * trianglePos) + triangleSize.width / 2);
-    newPath.lineTo(end.dx, end.dy);
-
-    canvas.drawPath(
-        newPath,
-        Paint()
-          ..color = Colors.red
-          ..style = PaintingStyle.stroke
-          ..strokeWidth = 3);
-  }
-
   void _addArcPointToPath(
       Rect size, Path path, Offset start, Offset end, double radius) {
     if (start.dx == end.dx) {
