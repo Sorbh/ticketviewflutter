@@ -60,8 +60,8 @@ TicketView(
 
   | Property | Type | Description |
   |----------|------|-------------|
-  | 'backgroundColor' | Color | Background card color for TicketView |
-  | 'contentBackgroundColor' | Color | Content card color for TicketView |
+  | `backgroundColor` | Color | Background card color for TicketView |
+  | `contentBackgroundColor` | Color | Content card color for TicketView |
 
 
 
