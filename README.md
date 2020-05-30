@@ -66,7 +66,7 @@ TicketView(
 
 
 # Screenshots
-![alt text](https://github.com/sorbh/ticketviewflutter/blob/master/raw/demo_1.jpg)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;![alt text](https://github.com/sorbh/ticketviewflutter/blob/master/raw/demo_2.jpg)
+![alt text](https://github.com/sorbh/ticketviewflutter/blob/master/raw/1.jpg)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;![alt text](https://github.com/sorbh/ticketviewflutter/blob/master/raw/2.jpg)
 
 
  
