@@ -1,6 +1,7 @@
 name: ticketview
-description: Its a clean Ticket view for Flutter application.
-version: 0.0.1
+description: Its a clean Ticket view or Receipt view for Flutter application with some UI customization.
+version: 1.0.0
+homepage: https://github.com/Sorbh/ticketviewflutter
 
 environment:
   sdk: ">=2.7.0 <3.0.0"

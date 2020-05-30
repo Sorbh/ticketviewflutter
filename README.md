@@ -66,7 +66,9 @@ TicketView(
 
 
 # Screenshots
-![alt text](https://github.com/sorbh/ticketviewflutter/blob/master/raw/1.jpg)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;![alt text](https://github.com/sorbh/ticketviewflutter/blob/master/raw/2.jpg)
+| Default View | Receipt View |
+|----------|------|
+| ![alt text](https://github.com/sorbh/ticketviewflutter/blob/master/raw/1.jpg) | ![alt text](https://github.com/sorbh/ticketviewflutter/blob/master/raw/2.jpg) |
 
 
  
