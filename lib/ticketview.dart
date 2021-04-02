@@ -1,5 +1,6 @@
-import 'package:flutter/material.dart';
 import 'dart:math' as math;
+
+import 'package:flutter/material.dart';
 
 class TicketView extends StatelessWidget {
   final bool drawTriangle;
@@ -25,8 +26,9 @@ class TicketView extends StatelessWidget {
   final double borderRadius;
 
   final bool drawShadow;
+  final Color shadowColor;
 
-  final Widget child;
+  final Widget? child;
 
   TicketView({
     this.corderRadius = 3,
@@ -46,6 +48,7 @@ class TicketView extends StatelessWidget {
     this.drawBorder = true,
     this.borderRadius = 4,
     this.drawShadow = true,
+    this.shadowColor = Colors.grey,
     this.child,
   });
 
@@ -54,22 +57,24 @@ class TicketView extends StatelessWidget {
     return CustomPaint(
 //      foregroundPainter: TicketClipper(corderRadius, horizontal, vertical, triangleSize, trianglePos),
       painter: TicketViewPainter(
-          corderRadius,
-          drawTriangle,
-          drawArc,
-          triangleAxis,
-          triangleSize,
-          trianglePos,
-          contentBackgroundColor,
-          backgroundColor,
-          contentPadding,
-          backgroundPadding,
-          drawDivider,
-          dividerColor,
-          dividerStrokeWidth,
-          drawBorder,
-          borderRadius,
-          drawShadow),
+        corderRadius,
+        drawTriangle,
+        drawArc,
+        triangleAxis,
+        triangleSize,
+        trianglePos,
+        contentBackgroundColor,
+        backgroundColor,
+        contentPadding,
+        backgroundPadding,
+        drawDivider,
+        dividerColor,
+        dividerStrokeWidth,
+        drawBorder,
+        borderRadius,
+        drawShadow,
+         shadowColor,
+      ),
 
       child: Container(
           padding: contentPadding,
@@ -105,8 +110,9 @@ class TicketViewPainter extends CustomPainter {
   final double borderRadius;
 
   final bool drawShadow;
+  final Color shadowColor;
 
-  Offset dashStart, dashEnd;
+  Offset? dashStart, dashEnd;
 
   TicketViewPainter(
     this.corderRadius,
@@ -125,6 +131,7 @@ class TicketViewPainter extends CustomPainter {
     this.drawBorder,
     this.borderRadius,
     this.drawShadow,
+    this.shadowColor,
   );
 
   //IMPORTANT:  When you are clipping, all the polygon will be treated TicketViewPainter, Clip method will
@@ -253,13 +260,13 @@ class TicketViewPainter extends CustomPainter {
           isArc: drawArc);
     }
 
-    if (drawShadow) canvas.drawShadow(path, Colors.grey, 2, true);
+    if (drawShadow) canvas.drawShadow(path, shadowColor, 2, true);
 
     canvas.clipPath(path);
 
     canvas.drawRect(foregroundRect, paint);
 
-    if (drawDivider) drawDashedLine(canvas, dashStart, dashEnd);
+    if (drawDivider) drawDashedLine(canvas, dashStart!, dashEnd!);
   }
 
   void _addTrianglePointToPath(Rect size, Path path, Offset start, Offset end,
@@ -467,12 +474,11 @@ class TicketViewPainter extends CustomPainter {
   }
 
   void drawDashedLine(Canvas canvas, Offset start, Offset end) {
-
-    Offset a,b;
-    if(start.dy == end.dy){
-      a = start.dx<end.dx ? start : end;
-      b = start.dx>end.dx ? start : end;
-    }else{
+    Offset a, b;
+    if (start.dy == end.dy) {
+      a = start.dx < end.dx ? start : end;
+      b = start.dx > end.dx ? start : end;
+    } else {
       a = start;
       b = end;
     }
@@ -491,11 +497,11 @@ class TicketViewPainter extends CustomPainter {
   }
 
   Path getDashedPath({
-    @required Offset a,
-    @required Offset b,
-    @required gap,
-  }) { 
-    Size size = Size(b.dx - a.dx, b.dy - a.dy); 
+    required Offset a,
+    required Offset b,
+    required gap,
+  }) {
+    Size size = Size(b.dx - a.dx, b.dy - a.dy);
     Path path = Path();
     path.moveTo(a.dx, a.dy);
     bool shouldDraw = true;
@@ -513,8 +519,8 @@ class TicketViewPainter extends CustomPainter {
 
     while (currentPoint.x <= b.dx && currentPoint.y <= b.dy) {
       shouldDraw
-          ? path.lineTo(currentPoint.x, currentPoint.y)
-          : path.moveTo(currentPoint.x, currentPoint.y);
+          ? path.lineTo(currentPoint.x as double, currentPoint.y as double)
+          : path.moveTo(currentPoint.x as double, currentPoint.y as double);
       shouldDraw = !shouldDraw;
       currentPoint = math.Point(
         currentPoint.x + dx,
