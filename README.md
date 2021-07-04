@@ -9,6 +9,8 @@ The source code is **100% Dart**.
 # Motivation
 
 I need some clean Ticket/Receipt View view for my Flutter application.
+Extended it and published it, because I need it for a project and want to save time for other devs.
+Pull Requests on original package pending since April 2021
 
 # Getting started
 
@@ -20,7 +22,7 @@ This library is posted in pub.dev
 #### pubspec.yaml
 ```dart
 dependencies:  
-	ticketview: ^1.0.0
+	ticketview: ^2.0.0
 ```
 
 # Usage
@@ -62,6 +64,7 @@ TicketView(
   |----------|------|-------------|
   | `backgroundColor` | Color | Background card color for TicketView |
   | `contentBackgroundColor` | Color | Content card color for TicketView |
+  | `shadowColor` | Color | Define Color of the Shadow, Default is gray |
 
 
 
@@ -76,8 +79,9 @@ TicketView(
 
 # Author
   * **Saurabh K Sharma - [GIT](https://github.com/Sorbh)**
-  
-      I am very new to open source community. All suggestion and improvement are most welcomed. 
+      I am very new to open source community. All suggestion and improvement are most welcomed.
+  * **jxstxn - [GIT](https://github.com/jxstxn1)**
+      Im learning Flutter since one year and now I publish my first package based on the Original FlutterTicketView.
   
  
 ## Contributing
