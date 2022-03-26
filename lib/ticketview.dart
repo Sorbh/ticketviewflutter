@@ -26,7 +26,7 @@ class TicketView extends StatelessWidget {
 
   final bool drawShadow;
 
-  final Widget child;
+  final Widget? child;
 
   TicketView({
     this.corderRadius = 3,
@@ -106,7 +106,7 @@ class TicketViewPainter extends CustomPainter {
 
   final bool drawShadow;
 
-  Offset dashStart, dashEnd;
+  Offset? dashStart, dashEnd;
 
   TicketViewPainter(
     this.corderRadius,
@@ -259,7 +259,7 @@ class TicketViewPainter extends CustomPainter {
 
     canvas.drawRect(foregroundRect, paint);
 
-    if (drawDivider) drawDashedLine(canvas, dashStart, dashEnd);
+    if (drawDivider) drawDashedLine(canvas, dashStart!, dashEnd!);
   }
 
   void _addTrianglePointToPath(Rect size, Path path, Offset start, Offset end,
@@ -491,9 +491,9 @@ class TicketViewPainter extends CustomPainter {
   }
 
   Path getDashedPath({
-    @required Offset a,
-    @required Offset b,
-    @required gap,
+    required Offset a,
+    required Offset b,
+    required gap,
   }) { 
     Size size = Size(b.dx - a.dx, b.dy - a.dy); 
     Path path = Path();
@@ -513,8 +513,8 @@ class TicketViewPainter extends CustomPainter {
 
     while (currentPoint.x <= b.dx && currentPoint.y <= b.dy) {
       shouldDraw
-          ? path.lineTo(currentPoint.x, currentPoint.y)
-          : path.moveTo(currentPoint.x, currentPoint.y);
+          ? path.lineTo(currentPoint.x as double, currentPoint.y as double)
+          : path.moveTo(currentPoint.x as double, currentPoint.y as double);
       shouldDraw = !shouldDraw;
       currentPoint = math.Point(
         currentPoint.x + dx,
