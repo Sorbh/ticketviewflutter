@@ -46,7 +46,7 @@ class _MyHomePageState extends State<MyHomePage> {
             Row(
               mainAxisSize: MainAxisSize.min,
               children: <Widget>[
-                RaisedButton(
+                TextButton(
                   onPressed: () {
                     setState(() {
                       _showTicketView = true;
@@ -57,7 +57,7 @@ class _MyHomePageState extends State<MyHomePage> {
                 SizedBox(
                   width: 20,
                 ),
-                RaisedButton(
+                TextButton(
                   onPressed: () {
                     setState(() {
                       _showTicketView = false;
@@ -84,34 +84,61 @@ class _MyHomePageState extends State<MyHomePage> {
   Widget _getTicketInfoView() {
     return Center(
       child: Container(
-        height: 160,
+        height: 200,
         margin: EdgeInsets.all(10),
         child: TicketView(
-          child: Container(),
+          drawDivider: true,
+          dividerPadding: 0,
+          contentPadding: EdgeInsets.all(20),
+          backgroundColor: Colors.black,
+          // dividerColor: Colors.amber,
+          child: Row(
+            children: <Widget>[
+              Flexible(
+                flex: 7,
+                child: ticketInfoWidget(),
+              ),
+              const SizedBox(
+                width: 10,
+              ),
+              Flexible(
+                flex: 3,
+                child: SizedBox(
+                  child: counterWidget(),
+                ),
+              ),
+            ],
+          ),
         ),
       ),
     );
   }
 
-  Container ticketInfoWidget() {
-    return Container(
-      child: Column(
-        mainAxisSize: MainAxisSize.max,
-        mainAxisAlignment: MainAxisAlignment.spaceAround,
-        children: <Widget>[
-          Text(
-            'PROMO TICKET',
-            style: GoogleFonts.poppins(color: Colors.black, fontSize: 16),
+  Widget ticketInfoWidget() {
+    return SizedBox(
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          Column(
+            mainAxisAlignment: MainAxisAlignment.spaceAround,
+            children: <Widget>[
+              Text(
+                'PROMO TICKET',
+                style: GoogleFonts.poppins(color: Colors.black, fontSize: 16),
+              ),
+              Text(
+                '\$10.00',
+                style: GoogleFonts.poppins(
+                    color: Colors.red,
+                    fontSize: 20,
+                    fontWeight: FontWeight.w700),
+              ),
+              Text(
+                '120 Tickets Available',
+                style: GoogleFonts.poppins(color: Colors.black, fontSize: 12),
+              )
+            ],
           ),
-          Text(
-            '\$10.00',
-            style: GoogleFonts.poppins(
-                color: Colors.red, fontSize: 20, fontWeight: FontWeight.w700),
-          ),
-          Text(
-            '120 Tickets Available',
-            style: GoogleFonts.poppins(color: Colors.black, fontSize: 12),
-          )
         ],
       ),
     );
@@ -169,11 +196,15 @@ class _MyHomePageState extends State<MyHomePage> {
       backgroundPadding: EdgeInsets.symmetric(vertical: 0, horizontal: 20),
       backgroundColor: Color(0xFF8F1299),
       contentPadding: EdgeInsets.symmetric(vertical: 24, horizontal: 0),
-      drawArc: false,
       triangleAxis: Axis.vertical,
       borderRadius: 6,
       drawDivider: true,
       trianglePos: .5,
+      circleDash: true,
+      drawArc: true,
+      dividerPadding: 5,
+      dividerColor: Color(0xFF8F1299),
+      dashWidth: 5,
       child: Container(
         child: Column(
           children: <Widget>[
